@@ -12,13 +12,13 @@ $voitures = getVoitures($visible);
   <div class="form-group">
     <label for="visible">Filtrer</label>
     <select class="form-control" id="visible" name="visible">
-      <option value="all" <?php if($visible == "all") { ?>selected="selected"<?php } ?>>
+      <option value="all" <?php if ($visible == "all") { ?>selected="selected" <?php } ?>>
         Toutes les voitures
       </option>
-      <option value="visible" <?php if($visible == "visible") { ?>selected="selected"<?php } ?>>
+      <option value="visible" <?php if ($visible == "visible") { ?>selected="selected" <?php } ?>>
         Voitures visibles
       </option>
-      <option value="not_visible" <?php if($visible == "not_visible") { ?>selected="selected"<?php } ?>>
+      <option value="not_visible" <?php if ($visible == "not_visible") { ?>selected="selected" <?php } ?>>
         Voitures non visibles
       </option>
     </select>
@@ -29,6 +29,7 @@ $voitures = getVoitures($visible);
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th scope="col">ID</th>
       <th scope="col">Nom</th>
       <th scope="col">Année de sortie</th>
@@ -39,6 +40,7 @@ $voitures = getVoitures($visible);
   <tbody>
     <?php foreach ($voitures as $voiture) { ?>
       <tr>
+        <td><a href="/admin/edit.php?id=<?php echo $voiture['ID']; ?>" class="btn btn-warning">Editer</a></td>
         <td><?php echo $voiture['ID']; ?></td>
         <td><?php echo $voiture['nom']; ?></td>
         <td><?php echo $voiture['annee_sortie']; ?></td>

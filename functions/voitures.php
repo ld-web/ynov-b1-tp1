@@ -34,6 +34,28 @@ function getVoitures(string $visible, ?string $search = null): array
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Récupère une voiture sous forme de tableau associatif
+ *
+ * @param integer $id
+ * @return array
+ */
+function getVoiture(int $id): ?array
+{
+  $pdo = getPdo();
+  $query = "SELECT * FROM voiture WHERE id = :id";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute(['id' => $id]);
+
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$row) {
+    return null;
+  }
+
+  return $row;
+}
+
 function insertVoiture(string $nom, int $anneeSortie, int $nbKm): bool
 {
   // Calcul du prix
