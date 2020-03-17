@@ -3,7 +3,7 @@ require_once '../../functions/voitures.php';
 require_once '../../views/layout/header.php';
 
 $visible = $_GET['visible'] ?? "all";
-$voitures = getVoitures();
+$voitures = getVoitures($visible);
 ?>
 
 <h1>Administration - Liste des voitures</h1>

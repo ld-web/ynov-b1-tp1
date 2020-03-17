@@ -27,10 +27,22 @@ function getVoituresVisibles(?string $search): array
  *
  * @return void
  */
-function getVoitures()
+function getVoitures(string $visible): array
 {
   $pdo = getPdo();
   $query = "SELECT * FROM voiture";
+
+  // if ($visible == "visible" || $visible == "not_visible") {
+  //   $query .= " WHERE visible = " . (($visible == "visible") ? "1" : "0");
+  // }
+  if ($visible == "visible") {
+    $query .= " WHERE visible = 1";
+  }
+
+  if ($visible == 'not_visible') {
+    $query .= " WHERE visible = 0";
+  }
+
   $stmt = $pdo->query($query);
 
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
