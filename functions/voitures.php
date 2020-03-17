@@ -2,32 +2,12 @@
 require_once __DIR__ . '/db.php';
 
 /**
- * Récupère les voitures visibles dans un tableau associatif
+ * Récupère toutes les voitures et les renvoies sous forme de tableau associatif
  *
- * @return array
- */
-function getVoituresVisibles(?string $search): array
-{
-  $pdo = getPdo();
-  $query = "SELECT * FROM voiture WHERE visible = 1";
-
-  if ($search !== null) {
-    $query = $query . " AND nom LIKE :search";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute(['search' => "%$search%"]);
-  } else {
-    $stmt = $pdo->query($query);
-  }
-
-  return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-/**
- * Récupère toutes les voitures
- *
+ * @var string $visible "all"|"visible"|"not_visible"
  * @return void
  */
-function getVoitures(string $visible): array
+function getVoitures(string $visible, ?string $search = null): array
 {
   $pdo = getPdo();
   $query = "SELECT * FROM voiture";
@@ -43,7 +23,13 @@ function getVoitures(string $visible): array
     $query .= " WHERE visible = 0";
   }
 
-  $stmt = $pdo->query($query);
+  if ($search !== null) {
+    $query = $query . " AND nom LIKE :search";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['search' => "%$search%"]);
+  } else {
+    $stmt = $pdo->query($query);
+  }
 
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

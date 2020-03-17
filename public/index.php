@@ -10,7 +10,7 @@ require_once '../views/layout/header.php';
 // Equivalent à :
 $search = $_GET['search'] ?? null;
 
-$voitures = getVoituresVisibles($search);
+$voitures = getVoitures("visible", $search);
 ?>
 
 <!-- CONTENU -->
