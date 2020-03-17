@@ -16,6 +16,32 @@ require_once '../../views/layout/header.php';
 // Si on arrive à ce stade du script, alors on n'est pas rentré dans le if
 // Donc cela signifie qu'on a un paramètre GET id
 $id = $_GET['id'];
+
+if (isset($_POST['nom']) && isset($_POST['annee_sortie']) && isset($_POST['nb_km'])) {
+  $nom = $_POST['nom'];
+  $anneeSortie = $_POST['annee_sortie'];
+  $nbKm = $_POST['nb_km'];
+  $visible = isset($_POST['visible']) ? 1 : 0;
+
+  // $update = updateVoitureLucas([
+  //   'id' => $id,
+  //   'nom' => $nom,
+  //   'annee' => $anneeSortie,
+  //   'kilometre' => $nbKm,
+  //   'visible' => $visible
+  // ]);
+
+  $update = updateVoitureRemi(
+    $id,
+    $nom,
+    $anneeSortie,
+    $nbKm,
+    $visible
+  );
+  
+  var_dump($update);
+}
+
 $voiture = getVoiture($id);
 
 if ($voiture == null) {?>
