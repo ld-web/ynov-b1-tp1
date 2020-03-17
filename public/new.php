@@ -1,5 +1,5 @@
 <?php
-require_once '../functions/db.php';
+require_once '../functions/voitures.php';
 require_once '../views/layout/header.php';
 
 $insert = null;
@@ -9,21 +9,7 @@ if (!empty($_POST) && !empty($_POST['nom']) && !empty($_POST['annee_sortie']) &&
   $anneeSortie = $_POST['annee_sortie'];
   $nbKm = $_POST['nb_km'];
 
-  // Calcul du prix
-  $prix = calculPrix($anneeSortie, $nbKm);
-
-  // Récupération d'une instance de PDO
-  $pdo = getPdo();
-
-  // Définition, préparation et exécution de la requête
-  $query = "INSERT INTO voiture (nom, annee_sortie, nb_km, prix) VALUES (:nom, :anneeSortie, :nbKm, :prix)";
-  $stmt = $pdo->prepare($query);
-  $insert = $stmt->execute([
-    'nom' => $nom,
-    'anneeSortie' => $anneeSortie,
-    'nbKm' => $nbKm,
-    'prix' => $prix
-  ]);
+  $insert = insertVoiture($nom, $anneeSortie, $nbKm);
 }
 ?>
 
