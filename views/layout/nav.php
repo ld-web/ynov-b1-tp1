@@ -13,6 +13,11 @@
       <li class="nav-item">
         <a class="nav-link" href="/admin">Administration</a>
       </li>
+      <?php if (isset($_SESSION) && $_SESSION['state'] == 'connected') { ?>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/logout.php">Déconnexion</a>
+        </li>
+      <?php } ?>
     </ul>
   </div>
 </nav>
