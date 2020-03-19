@@ -1,4 +1,11 @@
-<?php require_once '../../views/layout/header.php'; ?>
+<?php
+
+require_once '../../views/layout/header.php';
+
+// Après avoir démarré la session
+// $_SESSION['status'] = 'connected';
+
+?>
 
 <h1>Connexion</h1>
 <h4>Identifiez-vous pour accéder à l'administration</h4>
