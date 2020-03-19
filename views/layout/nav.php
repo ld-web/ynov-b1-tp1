@@ -13,7 +13,15 @@
       <li class="nav-item">
         <a class="nav-link" href="/admin">Administration</a>
       </li>
-      <?php if (isset($_SESSION) && $_SESSION['state'] == 'connected') { ?>
+      <?php
+      // Ignorer les erreurs éventuelles liées à un appel précédent de session_start
+      // Si session_start a déjà été appelée dans un fichier "parent", alors la ligne ci-dessous va renvoyer une erreur
+      // Ce n'est pas recommandé d'appliquer ce genre de technique, car ça relève de la rustine
+      // et non d'une architecture solide
+      // Dans une architecture mieux conçue (si on avait eu plus de temps),
+      // on aurait centralisé l'appel à session_start()
+      @session_start();
+      if (isset($_SESSION) && $_SESSION['state'] == 'connected') { ?>
         <li class="nav-item">
           <a class="nav-link" href="/admin/logout.php">Déconnexion</a>
         </li>
