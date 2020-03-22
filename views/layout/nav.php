@@ -21,7 +21,7 @@
       // Dans une architecture mieux conçue (si on avait eu plus de temps),
       // on aurait centralisé l'appel à session_start()
       @session_start();
-      if (isset($_SESSION) && $_SESSION['state'] == 'connected') { ?>
+      if (isset($_SESSION['state']) && $_SESSION['state'] == 'connected') { ?>
         <li class="nav-item">
           <a class="nav-link" href="/admin/logout.php">Déconnexion</a>
         </li>
